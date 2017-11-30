@@ -1,0 +1,22 @@
+{
+    "builders": [{
+  "type": "amazon-ebs",
+  "access_key": "AKIAJ65SLVWF6XN6BWKA",
+  "secret_key": "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",
+  "region": "us-east-2",
+  "source_ami": "ami-cfdafaaa",
+  "instance_type": "t2.micro",
+  "ssh_username": "ec2-user",
+  "ami_name": "awspackerjboss"
+    }],
+    "provisioners": [{
+    "type": "shell",
+    "inline": [
+      "sleep 30",
+      "sudo yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional",
+      "sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm",
+      "sudo yum update -y",
+      "sudo yum install -y ansible"
+    ]
+  }]
+}
